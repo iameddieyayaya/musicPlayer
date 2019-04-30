@@ -1,0 +1,21 @@
+ul {
+  list-style: none;
+}
+
+a {
+  display: block;
+  color: #fff;
+}
+
+.fas {
+  font-size: 24px;
+}
+
+.menu-text {
+  margin-left: 16px;
+}
+
+.navBar-group {
+  justify-content: center;
+  height: 40px;
+}

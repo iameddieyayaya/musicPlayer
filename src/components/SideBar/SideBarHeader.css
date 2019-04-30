@@ -1,0 +1,15 @@
+.navBar-header {
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  padding-bottom: 12px;
+}
+
+.navBar-header-text {
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.logo {
+  width: 60px;
+}
