@@ -1,0 +1,71 @@
+.webPlayer {
+  /* display: grid;
+  justify-content: center;
+  align-items: center; */
+  /* height: 90px;
+  width: 100%; */
+  background-color: #282828;
+  color: white;
+}
+
+.webContainer {
+  min-width: 620px;
+  background-color: #282828;
+  border-top: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  user-select: none;
+}
+
+.webPlayer {
+  align-items: center;
+  display: -webkit-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 90px;
+  padding: 0 16px;
+}
+
+.webPlayer-left {
+  width: 30%;
+  min-width: 180px;
+}
+
+.now-playing {
+  display: -webkit-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  color: #b3b3b3;
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.playback-bar {
+  display: -webkit-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+
+.now-playing-center {
+  width: 40%;
+  max-width: 722px;
+}
+
+.webPlayer-right {
+  display: flex;
+}

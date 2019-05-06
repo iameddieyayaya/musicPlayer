@@ -5,6 +5,7 @@ ul {
 a {
   display: block;
   color: #fff;
+  text-decoration: none;
 }
 
 .fas {

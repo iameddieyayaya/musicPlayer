@@ -1,0 +1,54 @@
+html {
+  box-sizing: border-box;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.015em;
+  text-transform: none;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto-fill;
+  grid-template-areas:
+    'sidebar content'
+    'player player';
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.content {
+  grid-area: content;
+}
+
+.player {
+  grid-area: player;
+}

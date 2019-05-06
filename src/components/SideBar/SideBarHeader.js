@@ -9,13 +9,15 @@ const SideBarHeader = () => {
         alt='git logo'
         href='https://github.com/iameddieyayaya/musicPlayer'
         target='_blank'
+        rel='noopener noreferrer'
       >
-        <img className='logo' src={logo} />
+        <img className='logo' src={logo} alt='gitHub logo' />
       </a>
       <a
         className='navBar-header-text'
         href='https://github.com/iameddieyayaya/musicPlayer'
         target='_blank'
+        rel='noopener noreferrer'
       >
         Webify
       </a>
