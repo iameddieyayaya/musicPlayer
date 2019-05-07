@@ -42,7 +42,7 @@
   position: relative;
 }
 
-button {
+.webPlayer button {
   background-color: transparent;
   border: none;
   color: #b3b3b3;
