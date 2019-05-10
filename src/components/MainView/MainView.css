@@ -1,0 +1,20 @@
+.main-content {
+  overflow: scroll;
+  padding-left: 25px;
+}
+
+.main-content-nav li {
+  display: inline-block;
+  padding: 10px;
+  line-height: 16px;
+  padding: 5px 10px;
+  letter-spacing: 0.16em;
+  color: #fff;
+  opacity: 0.6;
+}
+
+.main-content h1 {
+  font-size: 36px;
+  color: #fff;
+  margin: 24px 0;
+}

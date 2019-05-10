@@ -1,3 +1,4 @@
+import './ImageCard.css';
 import React from 'react';
 
 class ImageCard extends React.Component {
@@ -25,8 +26,24 @@ class ImageCard extends React.Component {
     const { name, images } = this.props.images;
 
     return (
-      <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <img ref={this.imageRef} alt={name} src={images[0].url} />
+      <div
+        className='image-card-container'
+        style={{
+          gridRowEnd: `span ${this.state.spans}`,
+          color: '#fff'
+        }}
+      >
+        <img
+          className='image'
+          ref={this.imageRef}
+          alt={name}
+          src={images[0].url}
+        />
+        <h3 style={{ textAlign: 'center', fontSize: '16px' }}>{name}</h3>
+
+        {/* <div className='play-overlay-middle'>
+          <i className='play-overlay fas fa-play-circle' aria-hidden='true' />
+        </div> */}
       </div>
     );
   }

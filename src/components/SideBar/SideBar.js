@@ -1,8 +1,8 @@
 import './SideBar.css';
 import React from 'react';
-import SideBarHeader from './SideBar/SideBarHeader';
-import Menu from './SideBar/Menu';
-import RecentlyPlayed from './SideBar/RecentlyPlayed';
+import SideBarHeader from './SideBarHeader';
+import Menu from './Menu';
+import RecentlyPlayed from './RecentlyPlayed';
 
 const SideBar = () => {
   return (

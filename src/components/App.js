@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react';
-import SideBar from './SideBar';
-import WebPlayer from './WebPlayer';
-import MainView from './MainView';
+import SideBar from './SideBar/SideBar';
+import WebPlayer from './WebPlayer/WebPlayer';
+import MainView from './MainView/MainView';
 import queryString from 'query-string';
 
 // change this to a linear gradient
@@ -14,19 +14,7 @@ import queryString from 'query-string';
 //     linear-gradient(transparent, rgb(0, 0, 0) 70%);
 //   background-size: cover;
 //   background-repeat: no-repeat;
-
 let defaultBackground = 'teal';
-let fakeServerData = {
-  user: {
-    name: 'Eddie',
-    playlists: [
-      {
-        name: 'My favorites',
-        songs: ['Beat It', 'Karama Police', 'Salt']
-      }
-    ]
-  }
-};
 
 class App extends React.Component {
   constructor() {

@@ -1,0 +1,39 @@
+/********* Css for image play-logo overlay 
+           Commented out when hovering it changes all not the indiv.
+***********/
+/* .image-card-container {
+  position: relative;
+  width: 175px;
+}
+
+.image {
+  opacity: 1;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+}
+
+.play-overlay-middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  border: 1px solid green;
+}
+
+.play-overlay {
+  color: #fff;
+  font-size: 80px;
+  text-align: center;
+} */
+
+/* .container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .play-overlay-middle {
+  opacity: 1;
+} */

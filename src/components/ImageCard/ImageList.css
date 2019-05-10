@@ -1,0 +1,9 @@
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  grid-row-gap: 1.1em;
+}
+
+.image-list img {
+  width: 175px;
+}
