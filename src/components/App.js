@@ -4,28 +4,24 @@ import SideBar from './SideBar/SideBar';
 import WebPlayer from './WebPlayer/WebPlayer';
 import MainView from './MainView/MainView';
 import queryString from 'query-string';
-
-// change this to a linear gradient
-//  background-image: linear-gradient(
-//       to right bottom,
-//       rgb(60, 66, 93),
-//       rgb(0, 0, 0)
-//     ),
-//     linear-gradient(transparent, rgb(0, 0, 0) 70%);
-//   background-size: cover;
-//   background-repeat: no-repeat;
-let defaultBackground = 'teal';
+import RecentlyPlayed from './SideBar/RecentlyPlayed';
 
 class App extends React.Component {
   constructor() {
     super();
-    this.state = { serverData: {}, topPics: [] };
+    this.state = {
+      serverData: {},
+      topPics: [],
+      recentlyPlayed: [],
+      topArtists: []
+    };
   }
 
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
 
+    //Grab User's Data. For example Name
     fetch('https://api.spotify.com/v1/me', {
       headers: {
         Authorization: 'Bearer ' + accessToken
@@ -34,6 +30,7 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => this.setState({ user: { name: data.display_name } }));
 
+    //Featured Playlist
     fetch('https://api.spotify.com/v1/browse/featured-playlists', {
       headers: {
         Authorization: 'Bearer ' + accessToken
@@ -41,20 +38,47 @@ class App extends React.Component {
     })
       .then(response => response.json())
       .then(data => this.setState({ topPics: data.playlists.items }));
+
+    //Users Recently Played
+    fetch('https://api.spotify.com/v1/me/player/recently-played', {
+      headers: {
+        Authorization: 'Bearer ' + accessToken
+      }
+    })
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          recentlyPlayed: data.items.map(item => item.track.album)
+        })
+      );
+
+    //Users Recently Played
+    fetch('https://api.spotify.com/v1/me/top/artists', {
+      headers: {
+        Authorization: 'Bearer ' + accessToken
+      }
+    })
+      .then(response => response.json())
+      .then(data => this.setState({ topArtists: data.items }));
   }
 
   render() {
+    const { user, topPics, recentlyPlayed, topArtists } = this.state;
+    console.log('TopARTISTS  ', this.state.topArtists);
+
     return (
       <div className='container'>
         <div className='sidebar'>
           <SideBar />
         </div>
-        <div className='content' style={{ backgroundColor: defaultBackground }}>
+        <div className='content'>
           {this.state.user ? (
-            <div>
+            <div className='main-view'>
               <MainView
-                name={this.state.user && this.state.user.name}
-                topPics={this.state.topPics}
+                name={user && user.name}
+                topPics={topPics}
+                recentlyPlayed={recentlyPlayed}
+                topArtists={topArtists}
               />
             </div>
           ) : (

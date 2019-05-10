@@ -1,6 +1,7 @@
 import './MainView.css';
 import React from 'react';
 import ImageList from '../ImageCard/ImageList';
+import RecentlyPlayed from '../SideBar/RecentlyPlayed';
 
 const MainContentNavBar = () => {
   return (
@@ -27,11 +28,20 @@ const MainContentNavBar = () => {
 
 class MainView extends React.Component {
   render() {
+    console.log(this.props);
+
     return (
       <div className='main-content'>
         <MainContentNavBar />
-        {this.props.name && <h1>Made for {this.props.name}</h1>}
+        {this.props.name && <h1> Made for {this.props.name}</h1>}
         <ImageList images={this.props.topPics} />
+        <h1>Recently Played</h1>
+        {/* <ImageList images={this.props.recentlyPlayed} /> 
+        Gotta figure out how to filter out dupes
+        Using recently played.tracks.albums for images.
+      */}
+        <h1>Top Artists</h1>
+        <ImageList images={this.props.topArtists} />
       </div>
     );
   }

@@ -28,6 +28,13 @@ ul {
   font-weight: normal;
 }
 
+h1 {
+  font-weight: 700;
+  font-size: 36px;
+  color: #fff;
+  margin: 24px 0;
+}
+
 ol,
 ul {
   list-style: none;
@@ -40,14 +47,25 @@ ul {
   grid-template-areas:
     'sidebar content'
     'player player';
+  height: 100vh;
 }
 
 .sidebar {
   grid-area: sidebar;
+  overflow: hidden;
 }
 
 .content {
   grid-area: content;
+  overflow: scroll;
+  background-image: linear-gradient(
+      to right bottom,
+      rgb(60, 66, 93),
+      rgb(0, 0, 0)
+    ),
+    linear-gradient(transparent, rgb(0, 0, 0) 70%);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .player {
