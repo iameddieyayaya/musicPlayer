@@ -1,8 +1,4 @@
-ul {
-  list-style: none;
-}
-
-a {
+.menu a {
   display: block;
   color: #fff;
   text-decoration: none;

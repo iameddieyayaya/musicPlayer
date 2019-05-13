@@ -1,13 +1,34 @@
-.navBar {
-  height: 708px;
+.sider-bar {
+  height: 86vh;
   width: 230px;
-  /* Comment this to make app responsive using grid : can't seem 
-     without grid*/
-  /* position: fixed; */
-  /* z-index: 1; */
-  /* top: 0;
-  left: 0; */
   background-color: black;
-  cursor: pointer;
   color: #fff;
+  display: block;
+}
+
+.sider-bar ul {
+  list-style: none;
+}
+
+.sider-bar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+
+.link-subtle {
+  opacity: 0.6;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+}
+
+.link-subtle:hover {
+  opacity: 1;
+}
+
+.sider-bar h3 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  opacity: 0.6;
 }

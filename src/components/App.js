@@ -21,6 +21,10 @@ class App extends React.Component {
     let parsed = queryString.parse(window.location.search);
     let accessToken = parsed.access_token;
 
+    if (!accessToken) {
+      return;
+    }
+
     //Grab User's Data. For example Name
     fetch('https://api.spotify.com/v1/me', {
       headers: {
@@ -42,17 +46,22 @@ class App extends React.Component {
     //Users Recently Played
     fetch('https://api.spotify.com/v1/me/player/recently-played', {
       headers: {
-        Authorization: 'Bearer ' + accessToken
+        Authorization: 'Bearer ' + accessToken + { limit: 5 }
       }
     })
       .then(response => response.json())
       .then(data =>
         this.setState({
-          recentlyPlayed: data.items.map(item => item.track.album)
+          recentlyPlayed: data.items.map(item => {
+            console.log(this.state);
+            return {
+              trackName: item.track.name
+            };
+          })
         })
       );
 
-    //Users Recently Played
+    //Users Top Artists
     fetch('https://api.spotify.com/v1/me/top/artists', {
       headers: {
         Authorization: 'Bearer ' + accessToken
@@ -63,13 +72,12 @@ class App extends React.Component {
   }
 
   render() {
+    // console.log('STATE---', this.state);
     const { user, topPics, recentlyPlayed, topArtists } = this.state;
-    console.log('TopARTISTS  ', this.state.topArtists);
-
     return (
       <div className='container'>
         <div className='sidebar'>
-          <SideBar />
+          <SideBar poop={this.state.recentlyPlayed} />
         </div>
         <div className='content'>
           {this.state.user ? (
@@ -89,9 +97,11 @@ class App extends React.Component {
               }}
             >
               <button
-                onClick={() =>
-                  (window.location = 'http://localhost:8888/login')
-                }
+                onClick={() => {
+                  window.location = window.location.href.includes('localhost')
+                    ? 'http://localhost:8888/login'
+                    : 'https://musicplayer-backend.herokuapp.com/login';
+                }}
                 style={{
                   padding: '20px',
                   fontSize: '20px'

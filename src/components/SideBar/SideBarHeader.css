@@ -9,6 +9,11 @@
 .navBar-header-text {
   font-size: 30px;
   text-decoration: none;
+  opacity: 0.6;
+}
+
+.navBar-header-text:hover {
+  opacity: 1;
 }
 
 .logo {

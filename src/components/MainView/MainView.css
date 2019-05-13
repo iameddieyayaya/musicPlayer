@@ -1,5 +1,4 @@
 .main-content {
-  overflow: scroll;
   padding-left: 25px;
 }
 
@@ -11,4 +10,9 @@
   letter-spacing: 0.16em;
   color: #fff;
   opacity: 0.6;
+}
+
+.main-content li:hover {
+  opacity: 1;
+  cursor: pointer;
 }

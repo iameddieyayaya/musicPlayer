@@ -17,7 +17,7 @@ class ImageCard extends React.Component {
   setSpans = () => {
     const height = this.imageRef.current.clientHeight;
 
-    const spans = Math.ceil(height / 10);
+    const spans = Math.ceil(height / 50);
 
     this.setState({ spans });
   };
@@ -39,8 +39,7 @@ class ImageCard extends React.Component {
           alt={name}
           src={images[0].url}
         />
-        <h3 style={{ textAlign: 'center', fontSize: '16px' }}>{name}</h3>
-
+        <h3 style={{ textAlign: 'center', fontSize: '12px' }}>{name}</h3>
         {/* <div className='play-overlay-middle'>
           <i className='play-overlay fas fa-play-circle' aria-hidden='true' />
         </div> */}

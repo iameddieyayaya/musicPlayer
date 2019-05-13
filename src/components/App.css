@@ -52,7 +52,7 @@ ul {
 
 .sidebar {
   grid-area: sidebar;
-  overflow: hidden;
+  max-height: 100vh;
 }
 
 .content {

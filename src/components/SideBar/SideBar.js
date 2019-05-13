@@ -4,12 +4,14 @@ import SideBarHeader from './SideBarHeader';
 import Menu from './Menu';
 import RecentlyPlayed from './RecentlyPlayed';
 
-const SideBar = () => {
+const SideBar = props => {
+  console.log(props.poop[0]);
   return (
     <div>
-      <nav className='navBar'>
+      <nav className='sider-bar'>
         <SideBarHeader />
         <Menu />
+        <h3>Recently Played</h3>
         <RecentlyPlayed />
       </nav>
     </div>

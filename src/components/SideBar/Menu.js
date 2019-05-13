@@ -6,7 +6,7 @@ const Menu = () => {
     <ul className='menu'>
       <li className='navBar-group'>
         <div className='navBar-item'>
-          <a aria-label='Home' className='navBar-link' href='#Home'>
+          <a aria-label='Home' className='link-subtle' href='#Home'>
             <i className='fas fa-home' />
             <span className='menu-text'>Home</span>
           </a>
@@ -14,7 +14,7 @@ const Menu = () => {
       </li>
       <li className='navBar-group'>
         <div className='navBar-item'>
-          <a aria-label='Search' className='navBar-link' href='#Search'>
+          <a aria-label='Search' className='link-subtle' href='#Search'>
             <i className='fas fa-search' />
             <span className='menu-text'>Search</span>
           </a>
@@ -22,7 +22,7 @@ const Menu = () => {
       </li>
       <li className='navBar-group'>
         <div className='navBar-item'>
-          <a aria-label='Book' className='navBar-link' href='#Library'>
+          <a aria-label='Book' className='link-subtle' href='#Library'>
             <i className='fas fa-book' />
             <span className='menu-text'>Library</span>
           </a>
