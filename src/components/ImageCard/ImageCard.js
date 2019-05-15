@@ -40,9 +40,9 @@ class ImageCard extends React.Component {
           src={images[0].url}
         />
         <h3 style={{ textAlign: 'center', fontSize: '12px' }}>{name}</h3>
-        {/* <div className='play-overlay-middle'>
+        <div className='play-overlay-middle'>
           <i className='play-overlay fas fa-play-circle' aria-hidden='true' />
-        </div> */}
+        </div>
       </div>
     );
   }

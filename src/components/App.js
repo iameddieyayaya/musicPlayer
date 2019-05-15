@@ -53,9 +53,9 @@ class App extends React.Component {
       .then(data =>
         this.setState({
           recentlyPlayed: data.items.map(item => {
-            console.log(this.state);
             return {
-              trackName: item.track.name
+              track: item.track.name,
+              artist: item.track.artists[0].name
             };
           })
         })
@@ -72,12 +72,11 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('STATE---', this.state);
     const { user, topPics, recentlyPlayed, topArtists } = this.state;
     return (
       <div className='container'>
         <div className='sidebar'>
-          <SideBar poop={this.state.recentlyPlayed} />
+          <SideBar recentlyPlayed={recentlyPlayed} />
         </div>
         <div className='content'>
           {this.state.user ? (
@@ -85,7 +84,7 @@ class App extends React.Component {
               <MainView
                 name={user && user.name}
                 topPics={topPics}
-                recentlyPlayed={recentlyPlayed}
+                // recentlyPlayed={recentlyPlayed}
                 topArtists={topArtists}
               />
             </div>
