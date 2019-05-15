@@ -24,30 +24,53 @@ class WebPlayerLeft extends React.Component {
   }
 }
 
-class PlayerControls extends React.Component {
+class Player extends React.Component {
+  state = {
+    play: false
+  };
+
+  audio = new Audio(this.props.url);
+
+  togglePlay = () => {
+    this.setState({ play: !this.state.play }, () => {
+      this.state.play ? this.audio.play() : this.audio.pause();
+    });
+  };
+
   render() {
     return (
-      <div className='player-controls'>
-        <div className='player-controls__buttons'>
-          <button>
-            <i className='fas fa-random' />
-          </button>
-          <button>
-            <i className='fas fa-step-backward' />
-          </button>
-          <button>
-            <i className='fas fa-play-circle' aria-hidden='true' />
-          </button>
-          <button>
-            <i className='fas fa-step-forward' />
-          </button>
-          <button>
-            <i className='fas fa-redo-alt' />
-          </button>
-          <div className='playback-bar'>
-            <div className='progress-bar-time'>0:00</div>
-            <div className='progress-bar-bar'>prog bar here</div>
-            <div className='progress-bar-time'>4:20</div>
+      <div className='player'>
+        <div className='progress-bar' id='progress-bar' />
+        <audio
+          id='audio'
+          src='https://www.freesound.org/data/previews/338/338825_1648170-lq.mp3'
+        />
+        <div className='player-controls'>
+          <div className='player-controls__buttons'>
+            <button>
+              <i className='fas fa-random' />
+            </button>
+            <button>
+              <i className='fas fa-step-backward' />
+            </button>
+            <button onClick={this.togglePlay}>
+              {!this.state.play ? (
+                <i className='fas fa-play-circle' aria-hidden='true' />
+              ) : (
+                <i className='fas fa-pause-circle' />
+              )}
+            </button>
+            <button>
+              <i className='fas fa-step-forward' />
+            </button>
+            <button>
+              <i className='fas fa-redo-alt' />
+            </button>
+            <div className='playback-bar'>
+              <div className='progress-bar-time'>0:00</div>
+              <div className='progress-bar-bar'>prog bar here</div>
+              <div className='progress-bar-time remaining'>4:20</div>
+            </div>
           </div>
         </div>
       </div>
@@ -95,7 +118,8 @@ class WebPlayer extends React.Component {
         <div className='webPlayer'>
           <WebPlayerLeft />
           <div className='now-playing-center'>
-            <PlayerControls />
+            <Player url='https://p.scdn.co/mp3-preview/307a38881d110019d6ba00384996ddbd59a755ca?cid=4bb6379bc144451fb3a4ee6837a973a0' />
+            {/* <Music url='https://p.scdn.co/mp3-preview/307a38881d110019d6ba00384996ddbd59a755ca?cid=4bb6379bc144451fb3a4ee6837a973a0' /> */}
           </div>
           <WebPlayerRight />
         </div>

@@ -41,6 +41,7 @@
   min-width: 32px;
   height: 32px;
   position: relative;
+  cursor: pointer;
 }
 
 .playback-bar {
@@ -59,4 +60,8 @@
 
 .webPlayer-right {
   display: flex;
+}
+
+#audio {
+  border: 1px solid red;
 }
