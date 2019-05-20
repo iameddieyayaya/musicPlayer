@@ -4,7 +4,7 @@ import SideBar from './SideBar/SideBar';
 import WebPlayer from './WebPlayer/WebPlayer';
 import MainView from './MainView/MainView';
 import queryString from 'query-string';
-import RecentlyPlayed from './SideBar/RecentlyPlayed';
+// import RecentlyPlayed from './SideBar/RecentlyPlayed';
 
 class App extends React.Component {
   constructor() {
@@ -12,8 +12,8 @@ class App extends React.Component {
     this.state = {
       serverData: {},
       topPics: [],
-      recentlyPlayed: [],
-      topArtists: []
+      topArtists: [],
+      recentlyPlayed: []
     };
   }
 
@@ -25,7 +25,7 @@ class App extends React.Component {
       return;
     }
 
-    //Grab User's Data. For example Name
+    //Grab User's Name
     fetch('https://api.spotify.com/v1/me', {
       headers: {
         Authorization: 'Bearer ' + accessToken
@@ -44,22 +44,92 @@ class App extends React.Component {
       .then(data => this.setState({ topPics: data.playlists.items }));
 
     //Users Recently Played
-    fetch('https://api.spotify.com/v1/me/player/recently-played', {
-      headers: {
-        Authorization: 'Bearer ' + accessToken + { limit: 5 }
-      }
+    // fetch('https://api.spotify.com/v1/me/player/recently-played', {
+    //   headers: {
+    //     Authorization: 'Bearer ' + accessToken + { limit: 5 }
+    //   }
+    // })
+    //   .then(response => response.json())
+    //   .then(data =>
+    //     this.setState({
+    //       recentlyPlayed: data.items.map(item => {
+    //         return {
+    //           track: item.track.name,
+    //           artist: item.track.artists[0].name,
+    //           previewUrl: item.track.preview_url
+    //         };
+    //       })
+    //     })
+    //   );
+
+    // Grabs Playlist
+    fetch('https://api.spotify.com/v1/me/playlists', {
+      headers: { Authorization: 'Bearer ' + accessToken }
     })
       .then(response => response.json())
-      .then(data =>
+      .then(playlistData => {
+        let playlists = playlistData.items;
+        let trackDataPromises = playlists.map(playlist => {
+          let responsePromise = fetch(playlist.tracks.href, {
+            headers: { Authorization: 'Bearer ' + accessToken }
+          });
+          let trackDataPromise = responsePromise.then(response =>
+            response.json()
+          );
+          return trackDataPromise;
+        });
+        let allTracksDataPromises = Promise.all(trackDataPromises);
+        let playlistsPromise = allTracksDataPromises.then(trackDatas => {
+          trackDatas.forEach((trackData, i) => {
+            playlists[i].trackDatas = trackData.items
+              .map(item => item.track)
+              .map(trackData => ({
+                name: trackData.name,
+                duration: trackData.duration_ms / 1000
+              }));
+          });
+          return playlists;
+        });
+        return playlistsPromise;
+      })
+      .then(playlists =>
         this.setState({
-          recentlyPlayed: data.items.map(item => {
+          playlists: playlists.map(item => {
             return {
-              track: item.track.name,
-              artist: item.track.artists[0].name
+              name: item.name,
+              imageUrl: item.images[0].url,
+              songs: item.trackDatas.slice(0, 3)
             };
           })
         })
       );
+
+    //Recently Played
+    fetch('https://api.spotify.com/v1/me/player/recently-played', {
+      headers: {
+        Authorization: 'Bearer ' + accessToken
+      }
+    })
+      .then(response => response.json())
+      .then(recentlyPlayed => {
+        this.setState({
+          recentlyPlayed: recentlyPlayed.items.slice(0, 5).map(item => {
+            let artist = item.track.artists[0].name;
+            let track = item.track.name;
+            let img = item.track.album.images[0].url;
+            let preview_url = item.track.preview_url;
+            let id = item.track.id;
+
+            return {
+              artist,
+              track,
+              img,
+              preview_url,
+              id
+            };
+          })
+        });
+      });
 
     //Users Top Artists
     fetch('https://api.spotify.com/v1/me/top/artists', {
@@ -84,7 +154,7 @@ class App extends React.Component {
               <MainView
                 name={user && user.name}
                 topPics={topPics}
-                // recentlyPlayed={recentlyPlayed}
+                recentlyPlayed={recentlyPlayed}
                 topArtists={topArtists}
               />
             </div>

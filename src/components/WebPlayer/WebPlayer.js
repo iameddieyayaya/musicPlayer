@@ -118,7 +118,7 @@ class WebPlayer extends React.Component {
         <div className='webPlayer'>
           <WebPlayerLeft />
           <div className='now-playing-center'>
-            <Player url='https://p.scdn.co/mp3-preview/307a38881d110019d6ba00384996ddbd59a755ca?cid=4bb6379bc144451fb3a4ee6837a973a0' />
+            <Player url='https://p.scdn.co/mp3-preview/cd7105ae2716ac39417944ac1b74a97bdb8c625f?cid=4bb6379bc144451fb3a4ee6837a973a0' />
             {/* <Music url='https://p.scdn.co/mp3-preview/307a38881d110019d6ba00384996ddbd59a755ca?cid=4bb6379bc144451fb3a4ee6837a973a0' /> */}
           </div>
           <WebPlayerRight />
