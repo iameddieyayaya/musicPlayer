@@ -3,7 +3,17 @@ import React from 'react';
 const RecentlyPlayed = props => {
   const recent = props.recent.map(item => {
     return (
-      <div key={item.id}>
+      <div
+        key={item.id}
+        style={{ cursor: 'pointer' }}
+        onClick={() =>
+          props.onAudioSelect(
+            item.preview_url,
+            item.img,
+            item.artist,
+            item.track
+          )
+        }>
         {item.artist} - {item.track}
       </div>
     );

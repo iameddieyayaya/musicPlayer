@@ -11,7 +11,10 @@ class SideBar extends React.Component {
         <nav className='side-bar'>
           <SideBarHeader />
           <Menu />
-          <RecentlyPlayed recent={this.props.recentlyPlayed} />
+          <RecentlyPlayed
+            recent={this.props.recentlyPlayed}
+            onAudioSelect={this.props.onAudioSelect}
+          />
         </nav>
       </div>
     );

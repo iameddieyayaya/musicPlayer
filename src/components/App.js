@@ -13,7 +13,9 @@ class App extends React.Component {
       serverData: {},
       topPics: [],
       topArtists: [],
-      recentlyPlayed: []
+      recentlyPlayed: [],
+      selectedAudio: null,
+      isPlaying: {}
     };
   }
 
@@ -32,7 +34,13 @@ class App extends React.Component {
       }
     })
       .then(response => response.json())
-      .then(data => this.setState({ user: { name: data.display_name } }));
+      .then(data =>
+        this.setState({
+          user: {
+            name: data.display_name
+          }
+        })
+      );
 
     //Featured Playlist
     fetch('https://api.spotify.com/v1/browse/featured-playlists', {
@@ -41,37 +49,26 @@ class App extends React.Component {
       }
     })
       .then(response => response.json())
-      .then(data => this.setState({ topPics: data.playlists.items }));
-
-    //Users Recently Played
-    // fetch('https://api.spotify.com/v1/me/player/recently-played', {
-    //   headers: {
-    //     Authorization: 'Bearer ' + accessToken + { limit: 5 }
-    //   }
-    // })
-    //   .then(response => response.json())
-    //   .then(data =>
-    //     this.setState({
-    //       recentlyPlayed: data.items.map(item => {
-    //         return {
-    //           track: item.track.name,
-    //           artist: item.track.artists[0].name,
-    //           previewUrl: item.track.preview_url
-    //         };
-    //       })
-    //     })
-    //   );
+      .then(data =>
+        this.setState({
+          topPics: data.playlists.items
+        })
+      );
 
     // Grabs Playlist
     fetch('https://api.spotify.com/v1/me/playlists', {
-      headers: { Authorization: 'Bearer ' + accessToken }
+      headers: {
+        Authorization: 'Bearer ' + accessToken
+      }
     })
       .then(response => response.json())
       .then(playlistData => {
         let playlists = playlistData.items;
         let trackDataPromises = playlists.map(playlist => {
           let responsePromise = fetch(playlist.tracks.href, {
-            headers: { Authorization: 'Bearer ' + accessToken }
+            headers: {
+              Authorization: 'Bearer ' + accessToken
+            }
           });
           let trackDataPromise = responsePromise.then(response =>
             response.json()
@@ -138,15 +135,47 @@ class App extends React.Component {
       }
     })
       .then(response => response.json())
-      .then(data => this.setState({ topArtists: data.items }));
+      .then(data =>
+        this.setState({
+          topArtists: data.items
+        })
+      );
   }
 
+  // onAudioSelect = audio => {
+  //   this.setState({
+  //     selectedAudio: audio,
+  //     play: true
+  //   });
+  // };
+
+  onAudioSelect = (audio, img, artist, track) => {
+    this.setState({
+      isPlaying: {
+        selectedAudio: audio,
+        play: true,
+        img,
+        artist,
+        track
+      }
+    });
+  };
+
   render() {
-    const { user, topPics, recentlyPlayed, topArtists } = this.state;
+    const {
+      user,
+      topPics,
+      recentlyPlayed,
+      topArtists,
+      selectedAudio
+    } = this.state;
     return (
       <div className='container'>
         <div className='sidebar'>
-          <SideBar recentlyPlayed={recentlyPlayed} />
+          <SideBar
+            recentlyPlayed={recentlyPlayed}
+            onAudioSelect={this.onAudioSelect}
+          />
         </div>
         <div className='content'>
           {this.state.user ? (
@@ -163,8 +192,7 @@ class App extends React.Component {
               style={{
                 textAlign: 'center',
                 padding: '10px'
-              }}
-            >
+              }}>
               <button
                 onClick={() => {
                   window.location = window.location.href.includes('localhost')
@@ -174,15 +202,14 @@ class App extends React.Component {
                 style={{
                   padding: '20px',
                   fontSize: '20px'
-                }}
-              >
+                }}>
                 Sign in with Spotify
               </button>
             </div>
           )}
         </div>
         <div className='player'>
-          <WebPlayer />
+          <WebPlayer isPlaying={this.state.isPlaying} />
         </div>
       </div>
     );
