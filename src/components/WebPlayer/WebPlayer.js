@@ -168,7 +168,7 @@ class WebPlayer extends React.Component {
     this.state = {
       currentSong: this.props.isPlaying.selectedAudio,
       currentTime: 0,
-      isPlaying: false,
+      isPlaying: this.props.isPlaying.play,
       volume: 0.8
     };
 
@@ -212,6 +212,7 @@ class WebPlayer extends React.Component {
       () => {
         let currentlyPLaying = this.state.currentSong;
         this.audioElement.src = currentlyPLaying;
+
         if (this.state.currentSong) {
           this.state.isPlaying
             ? this.audioElement.play()
@@ -281,11 +282,13 @@ class WebPlayer extends React.Component {
     let mDisplay =
       m > 0 ? (m < 10 ? '0' : ':') + m + (m >= 0 ? ':' : ':') : '00:';
     let sDisplay = s > 0 ? (s <= 9 ? '0' : '') + s : '00';
-
     return mDisplay + sDisplay;
   }
 
   render() {
+    console.log(this.props);
+    console.log(this.state);
+
     return (
       <div className='webContainer'>
         <div className='webPlayer'>
@@ -293,6 +296,7 @@ class WebPlayer extends React.Component {
             img={this.props.isPlaying.img}
             artist={this.props.isPlaying.artist}
             track={this.props.isPlaying.track}
+            togglePlay={this.props.togglePlay}
           />
           <div className='now-playing-center'>
             <Player
