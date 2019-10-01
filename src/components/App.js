@@ -142,13 +142,6 @@ class App extends React.Component {
       );
   }
 
-  // onAudioSelect = audio => {
-  //   this.setState({
-  //     selectedAudio: audio,
-  //     play: true
-  //   });
-  // };
-
   onAudioSelect = (audio, img, artist, track) => {
     this.setState({
       isPlaying: {
@@ -167,7 +160,6 @@ class App extends React.Component {
       topPics,
       recentlyPlayed,
       topArtists,
-      selectedAudio
     } = this.state;
     return (
       <div className='container'>

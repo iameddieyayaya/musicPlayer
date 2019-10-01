@@ -6,7 +6,7 @@ class WebPlayerLeft extends React.Component {
     return (
       <div className='player-card webPlayer-left'>
         <div className='now-playing'>
-          <img style={{ width: '100px' }} src={this.props.img} />
+          <img style={{ width: '100px' }} src={this.props.img} alt={this.props.track} />
           <div className='track'>{this.props.track}</div>
           <div className='artist'>{this.props.artist}</div>
         </div>
@@ -286,8 +286,6 @@ class WebPlayer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
 
     return (
       <div className='webContainer'>

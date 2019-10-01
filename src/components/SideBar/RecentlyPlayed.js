@@ -6,14 +6,15 @@ const RecentlyPlayed = props => {
       <div
         key={item.id}
         style={{ cursor: 'pointer' }}
-        onClick={() =>
+        onClick={() => {
+          this.props.togglePlay();
           props.onAudioSelect(
             item.preview_url,
             item.img,
             item.artist,
             item.track
-          )
-        }>
+          );
+        }}>
         {item.artist} - {item.track}
       </div>
     );
