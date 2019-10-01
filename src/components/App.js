@@ -160,6 +160,7 @@ class App extends React.Component {
       topPics,
       recentlyPlayed,
       topArtists,
+      selectedAudio
     } = this.state;
     return (
       <div className='container'>
