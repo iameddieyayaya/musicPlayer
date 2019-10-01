@@ -1,18 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### `Spotify UI React Clone`
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `May 7th 2019`
-
-Currently app runs on localhost, will have to change that once I am ready to deploy.<br>
-Added, Images from featured playlist, will have to add some more Images + make it look pretty.
+Created a Spotify React Clone also hits the Spotify Api to grab user info.
