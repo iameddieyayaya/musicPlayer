@@ -1,4 +1,13 @@
 
 ### `Spotify UI React Clone`
 
-Created a Spotify React Clone also hits the Spotify Api to grab user info.
+First react project. Tried to copy the Spotify UI. Also grabs user info from the
+Spotify API.
+
+Deployed at
+
+https://webify-webplayer.herokuapp.com/
+
+
+![GitHub Logo](/images/screenshot.png)
+
